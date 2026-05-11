@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KMUTT Strategic Roadmap 2045 — University for Society</title>
+  <style>
+    body.mode-conservative .derived,
+    body.mode-conservative .balanced-only,
+    body.mode-conservative .advanced-only { display: none !important; }
+
+    body.mode-balanced .advanced-only { display: none !important; }
+
+    body.mode-advanced .conservative-note { display: none !important; }
+
+    .mode-panel { margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .mode-panel .mode-btn.active { background: var(--kmutt-orange); }
+    .source-label { font-weight: 800; font-size: 12px; margin-right: 4px; }
+    .source-rm { color: var(--kmutt-blue); }
+    .source-si { color: #9a4b00; }
+    .source-derived { color: #5b21b6; }
+    .source-delphi { color: #0f766e; }
+    .source-hs { color: #b45309; }
+    .source-retreat { color: #b91c1c; }
+    .cell-block { display: block; margin-bottom: 6px; }
+    .conservative-note { color: var(--muted); font-size: 13px; display: block; margin-top: 4px; }
+
+    :root {
+      --kmutt-blue: #003b73;
+      --kmutt-orange: #f28c28;
+      --kmutt-light-blue: #eaf3fb;
+      --kmutt-light-orange: #fff2e4;
+      --dark: #1f2937;
+      --muted: #6b7280;
+      --line: #d6dce5;
+      --bg: #f7f9fc;
+      --white: #ffffff;
+      --retreat-red: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "TH Sarabun New", "Noto Sans Thai", "Tahoma", sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.45;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar h1 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--kmutt-blue);
+    }
+
+    .btn {
+      border: 0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #111827;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1420px;
+      margin: 28px auto;
+      padding: 0 22px 46px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--kmutt-blue), #0b5fa5);
+      color: white;
+      border-radius: 24px;
+      padding: 30px 34px;
+      box-shadow: 0 18px 40px rgba(0, 59, 115, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(242, 140, 40, 0.26);
+      right: -90px;
+      top: -90px;
+    }
+
+    .hero .eyebrow {
+      color: #ffddaa;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.18;
+      max-width: 980px;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      font-size: 20px;
+      max-width: 1000px;
+      opacity: 0.95;
+    }
+
+    .hero .tag-hero {
+      display: inline-block;
+      background: rgba(255, 221, 170, 0.3);
+      color: #ffddaa;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .section {
+      margin-top: 26px;
+      background: var(--white);
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+    }
+
+    .section h3 {
+      margin: 0 0 14px;
+      color: var(--kmutt-blue);
+      font-size: 26px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 4px 0 14px;
+    }
+
+    /* Retreat 2025 callout */
+    .retreat-callout {
+      background: linear-gradient(135deg, #fef2f2, #fff7ed);
+      border-left: 6px solid var(--retreat-red);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+    }
+
+    .retreat-callout .retreat-eyebrow {
+      color: var(--retreat-red);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .retreat-callout h4 {
+      margin: 0 0 8px;
+      color: var(--kmutt-blue);
+      font-size: 22px;
+    }
+
+    .retreat-callout p {
+      margin: 4px 0;
+      font-size: 16px;
+      color: var(--dark);
+    }
+
+    /* Pillar grid for Retreat */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pillar-card {
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: white;
+      min-height: 168px;
+    }
+
+    .pillar-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .pillar-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .pillar-card li { margin-bottom: 4px; }
+
+    .pillar-1 { background: #1e40af; }
+    .pillar-2 { background: #15803d; }
+    .pillar-3 { background: #7c3aed; }
+    .pillar-4 { background: #c2410c; }
+
+    /* Assets row */
+    .assets-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .asset-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #fbfdff;
+      text-align: center;
+    }
+
+    .asset-card .asset-icon {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    .asset-card strong {
+      display: block;
+      color: var(--kmutt-blue);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .asset-card span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 110px repeat(25, 1fr);
+      gap: 4px;
+      align-items: center;
+      min-width: 1100px;
+    }
+
+    .timeline-wrap { overflow-x: auto; padding-bottom: 8px; }
+
+    .year {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .row-label {
+      font-weight: 800;
+      color: var(--kmutt-blue);
+      font-size: 16px;
+      padding-right: 10px;
+    }
+
+    .bar {
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .phase1 { background: #0b5fa5; }
+    .phase2 { background: #1d7f74; }
+    .phase3 { background: #7c3aed; }
+    .phase4 { background: #b91c1c; }
+    .plan { background: #6b7280; }
+    .plan14 { background: var(--kmutt-orange); }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .vision-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fbfdff;
+      min-height: 152px;
+    }
+
+    .vision-card strong {
+      display: block;
+      color: var(--kmutt-blue);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .vision-card span {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .vision-card.featured {
+      background: #fff7ed;
+      border-color: var(--kmutt-orange);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    th {
+      background: var(--kmutt-blue);
+      color: white;
+      padding: 12px 10px;
+      text-align: left;
+      border: 1px solid #164f82;
+      vertical-align: top;
+    }
+
+    td {
+      padding: 11px 10px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+      background: white;
+    }
+
+    tr:nth-child(even) td { background: #fbfcfe; }
+
+    .dimension {
+      font-weight: 800;
+      color: var(--kmutt-blue);
+      min-width: 150px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      margin: 2px 3px 4px 0;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--kmutt-light-blue);
+      color: var(--kmutt-blue);
+    }
+
+    .tag.orange {
+      background: var(--kmutt-light-orange);
+      color: #9a4b00;
+    }
+
+    .tag.purple {
+      background: #f0e9ff;
+      color: #5b21b6;
+    }
+
+    .tag.red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .small { font-size: 13px; color: var(--muted); }
+
+    .print-guide {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .guide-box {
+      border-left: 6px solid var(--kmutt-orange);
+      background: #fffaf4;
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    .guide-box strong {
+      display: block;
+      color: var(--kmutt-blue);
+      margin-bottom: 4px;
+    }
+
+    /* Legend strip */
+    .legend-strip {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      background: #f0f4fa;
+      border-radius: 12px;
+    }
+    .leg { display: flex; align-items: center; gap: 5px; }
+    .leg-dot { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+
+    @media print {
+      @page {
+        size: A3 landscape;
+        margin: 10mm;
+      }
+
+      body {
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .toolbar { display: none !important; }
+      .page { max-width: none; margin: 0; padding: 0; }
+      .section, .hero {
+        box-shadow: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .section { margin-top: 12px; padding: 16px; }
+      .hero { padding: 22px 26px; }
+      .hero h2 { font-size: 30px; }
+      table { font-size: 12px; }
+      th, td { padding: 7px 6px; }
+      .timeline { min-width: 0; }
+      .print-guide { display: none; }
+    }
+  </style>
+</head>
+<body class="mode-balanced">
+  <div class="toolbar">
+    <h1>KMUTT Strategic Roadmap 2045 — University for Society</h1>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <button class="btn" onclick="exportTableToCSV()">Export Excel (CSV)</button>
+      <button class="btn" onclick="window.print()">บันทึกเป็น PDF</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">FORESIGHT × RETREAT 2025 — INTEGRATED ROADMAP</div>
+      <h2>KMUTT Roadmap 2045: University for Society</h2>
+      <p>เชื่อม Roadmap 2036, Stress-testing 2045 และทิศทาง Retreat 2025 — ปรับ Core Positioning จาก Entrepreneurial University เป็น <strong>University for Society</strong> ที่สร้างผลกระทบต่อประเทศและสังคมอย่างยั่งยืน</p>
+      <div class="tag-hero">มหาวิทยาลัยเป็นประภาคาร (Beacon) และหมาที่เห่าดังๆ (Barking Dog) ให้กับสังคม</div>
+    </section>
+
+    <!-- Section 0: Retreat 2025 Core Repositioning -->
+    <section class="section">
+      <h3>0) Core Repositioning จาก Retreat 2025</h3>
+
+      <div class="retreat-callout">
+        <div class="retreat-eyebrow">★ KEY MESSAGE จาก RETREAT 2025</div>
+        <h4>มจธ. จะขับเคลื่อนภารกิจเพื่อสังคมและลดความเหลื่อมล้ำ โดยถือเป็น "พันธกิจหลัก (Core Mission)"</h4>
+        <p>ที่บูรณาการอยู่ในทุกมิติของมหาวิทยาลัย ทั้งการเรียนการสอน การวิจัยและนวัตกรรม การบริการวิชาการ และการจัดสรรทรัพยากร — <strong>ไม่ใช่เพียงกิจกรรมส่วนขยาย (Extension Activity)</strong> ที่อยู่นอกภารกิจหลัก</p>
+      </div>
+
+      <p class="note" style="margin-top:18px;font-weight:700;color:var(--kmutt-blue);font-size:18px;">ประเด็นเห็นร่วม 4 เรื่อง (Retreat 2025):</p>
+      <div class="pillar-grid">
+        <div class="pillar-card pillar-1">
+          <strong>1. การพัฒนากำลังคนสำหรับประเทศ</strong>
+          <ul>
+            <li>สร้าง "มนุษย์ที่สมบูรณ์" ควบคู่ทักษะ คุณธรรม จริยธรรม ความรับผิดชอบต่อสังคม</li>
+            <li>พัฒนาทักษะอนาคตสำหรับคนทุกช่วงวัย (AI, Financial Literacy, Wellness, Resilience)</li>
+            <li>ดึงดูด Talent จากนานาชาติ</li>
+          </ul>
+        </div>
+        <div class="pillar-card pillar-2">
+          <strong>2. การเป็นที่พึ่งของ SMEs และเศรษฐกิจฐานราก</strong>
+          <ul>
+            <li>เปิด Knowledge Infrastructure (AI Infrastructure, Science Park, Innovation Ecosystem) ให้สังคมเข้าถึง</li>
+            <li>มจธ. ทำหน้าที่ Educate / Consult / Incubate ให้แก่ SME และเศรษฐกิจฐานราก</li>
+          </ul>
+        </div>
+        <div class="pillar-card pillar-3">
+          <strong>3. การวิจัยและนวัตกรรมเพื่อแก้ปัญหาประเทศ</strong>
+          <ul>
+            <li>ตั้งโจทย์วิจัยเพื่อ National Challenges (สุขภาพ, Climate Change, น้ำ, สิ่งแวดล้อม, Rare Earth)</li>
+            <li>สร้าง Global Frontier Knowledge ในเรื่องสำคัญต่อสังคมไทย</li>
+            <li>เป็น Brain Bridge เชื่อมความรู้ทั่วโลกสู่การแก้ปัญหา</li>
+          </ul>
+        </div>
+        <div class="pillar-card pillar-4">
+          <strong>4. การร่วมพัฒนาอุดมศึกษาไทย</strong>
+          <ul>
+            <li>ร่วมมือสนับสนุนมหาวิทยาลัยอื่น โดยเฉพาะด้าน AI และการพัฒนาบุคลากร</li>
+            <li>เป็นองค์กรต้นแบบด้านธรรมาภิบาลและการปลูกฝังค่านิยมต้านคอร์รัปชัน</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 0.5: Future of Financing -->
+    <section class="section">
+      <h3>0.5) Future of Financing Higher Education — 5 Assets</h3>
+      <p class="note">มจธ. ต้องบริหารจัดการสินทรัพย์ที่มีอยู่ให้เกิดประสิทธิภาพสูงสุดทั้ง 5 ด้าน เพื่อสร้าง "ทรัพยากรใหม่" ที่จะเป็นพลังขับเคลื่อน University for Society อย่างยั่งยืน</p>
+      <div class="assets-row">
+        <div class="asset-card">
+          <div class="asset-icon">💰</div>
+          <strong>Financial</strong>
+          <span>แสวงหาโอกาสรับทรัพยากรจากรัฐ (New Budget Item), Endowment Fund, การลงทุน</span>
+        </div>
+        <div class="asset-card">
+          <div class="asset-icon">🏛️</div>
+          <strong>Physical</strong>
+          <span>วางระบบบริหาร Physical Asset เช่น RCM, ใช้ประโยชน์พื้นที่ทุกพื้นที่ให้คุณค่าสูงสุด</span>
+        </div>
+        <div class="asset-card">
+          <div class="asset-icon">💡</div>
+          <strong>Intellectual</strong>
+          <span>องค์ความรู้ ทรัพย์สินทางปัญญา และ Global Frontier Knowledge ที่ KMUTT สั่งสมไว้</span>
+        </div>
+        <div class="asset-card">
+          <div class="asset-icon">👥</div>
+          <strong>Human</strong>
+          <span>ใช้โอกาสช่วงเกษียณอายุ 10 ปีนี้ Reprofile บุคลากร, ลงทุนพัฒนาคน, ดึงดูดผู้เชี่ยวชาญต่างประเทศ</span>
+        </div>
+        <div class="asset-card">
+          <div class="asset-icon">🌐</div>
+          <strong>Networks</strong>
+          <span>พันธมิตรทั้งในและต่างประเทศ — เปลี่ยนเป็นสินทรัพย์เชิงยุทธศาสตร์ ไม่ใช่แค่ MOU</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>1) Overlay Timeline: Phase × Year × National Plan</h3>
+      <p class="note">ใช้ Phase เป็นกรอบยุทธศาสตร์ระยะยาว และใช้แผน 5 ปีเป็น Execution Window ตามรอบนโยบาย</p>
+      <div class="timeline-wrap">
+        <div class="timeline">
+          <div></div>
+          <div class="year">2566</div><div class="year">2567</div><div class="year">2568</div><div class="year">2569</div><div class="year">2570</div>
+          <div class="year">2571</div><div class="year">2572</div><div class="year">2573</div><div class="year">2574</div><div class="year">2575</div>
+          <div class="year">2576</div><div class="year">2577</div><div class="year">2578</div><div class="year">2579</div><div class="year">2580</div>
+          <div class="year">2581</div><div class="year">2582</div><div class="year">2583</div><div class="year">2584</div><div class="year">2585</div>
+          <div class="year">2586</div><div class="year">2587</div><div class="year">2588</div><div class="year">2589</div><div class="year">2590</div>
+
+          <div class="row-label">Strategic Phase</div>
+          <div></div><div></div>
+          <div class="bar phase1" style="grid-column: span 6;">Phase 1: Reframe to Society Core Mission<br/>2568–2573</div>
+          <div class="bar phase2" style="grid-column: span 6;">Phase 2: Scale Societal Impact<br/>2574–2579</div>
+          <div class="bar phase3" style="grid-column: span 7;">Phase 3: Lead Higher Ed Transform<br/>2580–2586</div>
+          <div class="bar phase4" style="grid-column: span 4;">Phase 4: Asian Beacon<br/>2587–2590</div>
+
+          <div class="row-label">5-Year Plan</div>
+          <div class="bar plan" style="grid-column: span 5;">แผน 13<br/>2566–2570</div>
+          <div class="bar plan14" style="grid-column: span 5;">แผน 14<br/>2571–2575</div>
+          <div class="bar plan" style="grid-column: span 5;">แผน 15<br/>2576–2580</div>
+          <div class="bar plan" style="grid-column: span 5;">แผน 16<br/>2581–2585</div>
+          <div class="bar plan" style="grid-column: span 5;">แผน 17<br/>2586–2590</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>2) Strategic Vision Progression — University for Society Pathway</h3>
+      <p class="note">ปรับ Vision Progression ให้สอดคล้องกับทิศทาง University for Society จาก Retreat 2025 — โดยยึด societal impact เป็นแกนวัดความสำเร็จ</p>
+      <div class="vision-grid">
+        <div class="vision-card">
+          <strong>แผน 13<br/>2566–2570</strong>
+          <span>TOP 3 STI Entrepreneurial University in ASEAN<br/><em style="color:#9a4b00;font-size:13px;">(วิสัยทัศน์เดิม)</em></span>
+        </div>
+        <div class="vision-card featured">
+          <strong>แผน 14<br/>2571–2575</strong>
+          <span><strong style="color:var(--retreat-red);">University for Society Foundation</strong> — Core Mission ผูกในทุกพันธกิจ + Beacon for SMEs and Social Challenges</span>
+        </div>
+        <div class="vision-card">
+          <strong>แผน 15<br/>2576–2580</strong>
+          <span>Impact-driven STI University — Brain Bridge เชื่อมความรู้โลกสู่การแก้ปัญหาประเทศไทย</span>
+        </div>
+        <div class="vision-card">
+          <strong>แผน 16<br/>2581–2585</strong>
+          <span>Higher Education Co-developer — ร่วมพัฒนาอุดมศึกษาไทย และเป็นต้นแบบธรรมาภิบาล</span>
+        </div>
+        <div class="vision-card">
+          <strong>แผน 17<br/>2586–2590</strong>
+          <span>Most Impactful University for Society in Asia by 2045</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>3) Integrated 9+1 Dimensions Roadmap: RM 2036 × Foresight 2045 × Retreat 2025</h3>
+      <div class="mode-panel">
+        <button id="btn-balanced" class="btn mode-btn active" onclick="setMode('balanced')">Balanced</button>
+        <button id="btn-conservative" class="btn mode-btn" onclick="setMode('conservative')">Conservative</button>
+        <button id="btn-advanced" class="btn mode-btn" onclick="setMode('advanced')">Advanced</button>
+      </div>
+      <p class="note">ตารางนี้ใช้ 9 มิติเดิมของ Roadmap 2036 เป็นโครงหลัก เติม initiatives จาก Stress-testing และทิศทาง Retreat 2025 — เพื่อให้ <strong>University for Society เป็น Core Mission ที่บูรณาการอยู่ในทุก OM</strong> ไม่ใช่ OM แยกต่างหาก</p>
+
+      <div class="legend-strip">
+        <div class="leg"><div class="leg-dot" style="background:#003b73;"></div><span><strong>[RM]</strong> Roadmap 2036 เดิม</span></div>
+        <div class="leg"><div class="leg-dot" style="background:#9a4b00;"></div><span><strong>[SI]</strong> Strategic Initiative จาก Stress-testing</span></div>
+        <div class="leg"><div class="leg-dot" style="background:#5b21b6;"></div><span><strong>[Derived]</strong> ข้อเสนอเพิ่มเติมจากการสังเคราะห์</span></div>
+        <div class="leg"><div class="leg-dot" style="background:#0f766e;"></div><span><strong>[Delphi]</strong> ยืนยันจาก Delphi Survey</span></div>
+        <div class="leg"><div class="leg-dot" style="background:#b45309;"></div><span><strong>[Horizon]</strong> สัญญาณจาก Horizon Scanning</span></div>
+        <div class="leg"><div class="leg-dot" style="background:#b91c1c;"></div><span><strong>[Retreat]</strong> ทิศทางจาก Retreat 2025</span></div>
+      </div>
+
+      <table class="roadmap-table">
+        <thead>
+          <tr>
+            <th style="width:13%">9+1 Dimensions</th>
+            <th style="width:17%">แผน 13<br/>2566–2570</th>
+            <th style="width:18%">แผน 14<br/>2571–2575</th>
+            <th style="width:18%">แผน 15<br/>2576–2580</th>
+            <th style="width:17%">แผน 16<br/>2581–2585</th>
+            <th style="width:17%">แผน 17<br/>2586–2590</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1: Size & Specialization -->
+          <tr>
+            <td class="dimension">1. Size &amp; Specialization</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>คงจุดยืนมหาวิทยาลัยขนาดกลางด้าน STI และทบทวน core strengths</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>ทบทวน Size &amp; Specialization ตามจุดแข็งของมหาวิทยาลัย</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>วาง KMUTT เป็น "Higher Education Institute" ที่มีภารกิจกว้างหลายมิติ ไม่จำกัดเป็นมหาวิทยาลัยรูปแบบเดิม</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>ยกระดับจาก "ขนาดกลาง" เป็น "focus-based university for society" — แต่ละ campus (บางมด บางขุนเทียน ราชบุรี KX) มี distinctive role สำหรับ societal mission</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>พัฒนา portfolio หลักสูตร/วิจัยตาม niche ที่มีศักยภาพ</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>พิจารณา Consolidate / ความร่วมมือระหว่างสถาบัน — ประเทศไทยมีมหาวิทยาลัยจำนวนมากเกินไป</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>ปรับโครงสร้างให้ยืดหยุ่นตามแพลตฟอร์มและพันธกิจ — campus แต่ละแห่งมี specialization role สำหรับสังคม</span>
+              <span class="conservative-note">Conservative: คงการทบทวนโครงสร้างตามรอบแผน</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>เป็น STI Platform University for Society ที่ชัดเจนด้าน role มากกว่า size</span>
+            </td>
+          </tr>
+
+          <!-- Row 2: Higher Education -->
+          <tr>
+            <td class="dimension">2. Higher Education</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>OBE, Lifelong Learning, Micro-credentials, WiL, Social Lab</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI Literacy, Lifelong Learning / EaaS, WIL, Micro-credentials (SI 1.1, 1.2, 1.4, 1.5)</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Developing Initiators, Human Skills, Mental Resilience, CUXO Mindset (SI 1.8, 1.11, 1.9)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>สร้าง "มนุษย์ที่สมบูรณ์" — ควบคู่ทักษะวิชาการ คุณธรรม จริยธรรม และความรับผิดชอบต่อสังคม</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>พัฒนาทักษะอนาคตให้คนทุกช่วงวัย: AI, Financial Literacy, Wellness, Resilience</span>
+              <span class="cell-block derived"><span class="source-label source-delphi">[Delphi]</span>Adaptive lifelong learning ecosystem และ cross-border credential recognition ถูกยืนยันเป็น high-impact future capability</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Education-as-a-Service เชื่อมฐานข้อมูลสมรรถนะรายบุคคลและ skill wallet (SI 1.2)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ผลักดัน KMUTT สู่มหาวิทยาลัยนานาชาติเต็มรูปแบบ — เพิ่มนักศึกษาต่างชาติและการใช้ภาษาอังกฤษ</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>สร้างระบบรับรองสมรรถนะ (competency credential) ที่นายจ้างใช้ได้จริง</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI-powered learning ecosystem และ assessment คนทำงานร่วมกับ AI (SI 1.3, 1.12)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Big Bet เพื่อรองรับ degree disruption — แพลตฟอร์มการเรียนรู้ที่ไม่ยึดติดรูปแบบปริญญา</span>
+              <span class="cell-block derived"><span class="source-label source-hs">[Horizon]</span>Degree disruption และ AI dominance เป็น key uncertainty</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Learning Platform for Society — สร้าง future society learners ด้วย AI-human collaboration ecosystem</span>
+            </td>
+          </tr>
+
+          <!-- Row 3: Research & Innovation -->
+          <tr>
+            <td class="dimension">3. Research &amp; Innovation</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Strategic Research Themes, demand-driven research, research ecosystem</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Strategic Research Themes, research cluster-based structure (SI 2.1, 2.2)</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Strategic Partner with Industry, experiential research in key industrial sectors, long-term research achievement assessment (SI 2.3, 2.8, 2.7)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ตั้งโจทย์วิจัยเพื่อ National Challenges — สุขภาพ, Climate Change, น้ำ, สิ่งแวดล้อม, Rare Earth</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เป็น "Brain Bridge" เชื่อมความรู้ทั่วโลกสู่การแก้ปัญหาประเทศไทย</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI-supported research, technology commercialisation, deep-tech spin-off (SI 2.6, 2.4)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>สร้าง Global Frontier Knowledge ในเรื่องสำคัญต่อสังคมไทย — ไม่ใช่วิจัยตามกระแสโลกอย่างเดียว</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Human-centric sustainability, energy, environment, quality of life and resource sufficiency research (SI 2.5, 2.9, 2.11)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Mission-driven research ตอบ climate และ AI transition</span>
+              <span class="cell-block derived"><span class="source-label source-hs">[Horizon]</span>Future Food / Health / Aging Society Research เป็น strategic opportunity</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Pathbreaking knowledge platform for societal transformation — เป็น research hub ระดับเอเชียด้าน social STI impact</span>
+            </td>
+          </tr>
+
+          <!-- Row 4: Global Prominence -->
+          <tr>
+            <td class="dimension">4. Global Prominence / Internationalization</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>ยกระดับมาตรฐานสากล ภาษา วัฒนธรรม และเครือข่ายความร่วมมือ</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Internationalizing KMUTT across teaching, learning, research and innovation (SI 4.1, score 48/50)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ผลักดัน มจธ. สู่มหาวิทยาลัยนานาชาติเต็มรูปแบบ — ดึงดูด Talent จากต่างประเทศและเพิ่มการใช้ภาษาอังกฤษ</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Mission-integrated internationalization — ฝังในหลักสูตร วิจัย HR และระบบสนับสนุน</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Selective globalization: เลือก strategic partners ตาม bloc / region / mission</span>
+              <span class="conservative-note">Conservative: คงแนวทาง international networking ตาม Roadmap เดิม</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Global multi-campus networks to tackle real-world national challenges (SI 3.10)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Global research platform และ joint credentials</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Asian impact positioning: สร้าง visibility จาก societal impact ไม่ใช่ ranking</span>
+              <span class="cell-block derived"><span class="source-label source-delphi">[Delphi]</span>Regional positioning ผ่าน societal impact เป็น differentiator สำคัญ</span>
+            </td>
+          </tr>
+
+          <!-- Row 5: Networking -->
+          <tr>
+            <td class="dimension">5. Networking, Partnership &amp; Collaboration</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Strategic partnerships กับรัฐ เอกชน ชุมชน และมหาวิทยาลัยต่างประเทศ</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Co-creation / Co-opetition กับ universities, industrial partners, school, company, community (SI 4.6)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เป็นที่พึ่งของ SMEs และเศรษฐกิจฐานราก — Educate / Consult / Incubate</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ร่วมพัฒนาอุดมศึกษาไทย — สนับสนุนมหาวิทยาลัยอื่น โดยเฉพาะด้าน AI และการพัฒนาบุคลากร</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Human × AI skills with industry partners and human development experts (SI 4.10)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เปิด Knowledge Infrastructure (AI Infra, Science Park, Innovation Ecosystem) ให้สังคมเข้าถึง</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Industry co-creation platform — ความร่วมมือกับ SMEs ในการ digital transformation</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Partnership portfolio ตามโจทย์ประเทศและเศรษฐกิจสองขั้ว</span>
+              <span class="cell-block derived"><span class="source-label source-hs">[Horizon]</span>Cross-sector collaboration เป็น resilience mechanism สำคัญ</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Regional innovation ecosystem platform เพื่อสร้าง impact ระดับเอเชีย</span>
+            </td>
+          </tr>
+
+          <!-- Row 6: Governance -->
+          <tr>
+            <td class="dimension">6. Governance &amp; Management</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Integrated Management System, EdPEx, Management by Fact, Policy &amp; Procedure</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Integrated Academic Cluster และการทบทวนโครงสร้างองค์กร</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI Governance / ethical guidelines / data and AI infrastructure (SI 3.12)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เป็นองค์กรต้นแบบด้านธรรมาภิบาล — ปลูกฝังค่านิยมต้านคอร์รัปชัน</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Anticipatory governance — ระบบ scenario monitoring และ predictive dashboard</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Agile &amp; Distributed Governance, decentralised decision-making, knowledge liquidity (SI 4.5)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Crisis protocol และ contingency mechanism สำหรับ multiple scenarios</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Self-organized / networked structure พร้อม scenario monitoring dashboard</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Adaptive governance ที่ทบทวนกลยุทธ์แบบ rolling และ trigger-based</span>
+              <span class="cell-block derived"><span class="source-label source-delphi">[Delphi]</span>Human-centered Technology Governance และ Sovereign AI capability เป็น governance priority ใหม่</span>
+            </td>
+          </tr>
+
+          <!-- Row 7: Human Resources -->
+          <tr>
+            <td class="dimension">7. Human Resources / Culture</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Competency-based HR, entrepreneurial mindset, digital HR system</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>HR as Strategic Partner และ value creators (SI 4.2, 4.3)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ใช้โอกาสช่วงเกษียณอายุ 10 ปีนี้ Reprofile บุคลากรเชิงกลยุทธ์</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ลงทุนพัฒนาคนทั้งสายวิชาการและสายสนับสนุนอย่างจริงจัง</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ดึงดูดนักวิชาการและผู้เชี่ยวชาญจากต่างประเทศ (Visiting Professor / Postdoctoral / Research Fellow)</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Talent Architecture / HR Tracks เพื่อ 10X Excellence Value University (SI 4.8)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>บุคลากรทุกคนเป็น Resource ที่มีค่า — สร้าง mindset แบบ "Be Resourceful"</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Psychological safety และ culture of experimentation</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Deep learning capabilities, adaptability, lifelong curiosity (SI 4.7)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Strategic recruitment จากทั้งในและต่างประเทศ — สร้างวัฒนธรรม value creator</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Future workforce ecosystem: Neo-generalist, AI co-working, global talent mobility</span>
+              <span class="cell-block derived"><span class="source-label source-delphi">[Delphi]</span>Neo-generalist workforce และ mental resilience เป็น future workforce capability สำคัญ</span>
+            </td>
+          </tr>
+
+          <!-- Row 8: Finance -->
+          <tr>
+            <td class="dimension">8. Finance</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Financial sustainability, strategic investment, diversify revenue</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>แสวงหาโอกาสรับทรัพยากรจากรัฐเพิ่ม (New Budget Item) ในโจทย์สำคัญของประเทศ</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>ระดมทุนเพื่อสร้างกองทุนถาวร (Endowment Fund) และพิจารณาความเป็นไปได้เรื่องการบริหารจัดการการลงทุน</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>วางระบบบริหารจัดการ Physical Asset ให้มีประสิทธิภาพ เช่น RCM และวางแผนใช้ประโยชน์พื้นที่ทุกพื้นที่</span>
+              <span class="conservative-note">Conservative: คง Financial Sustainability ตาม Roadmap เดิม</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>New revenue model: non-degree, platform services, industry research, commercialisation</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Contingency: แผนรับมือ enrollment decline / funding shock / degree disruption</span>
+              <span class="cell-block derived"><span class="source-label source-hs">[Horizon]</span>Funding shock และ demographic decline เป็น structural uncertainty สำคัญ</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Impact-based finance — resource allocation by societal impact ไม่ใช่แค่หน่วยงาน</span>
+            </td>
+          </tr>
+
+          <!-- Row 9: Infrastructure -->
+          <tr>
+            <td class="dimension">9. Infrastructure</td>
+            <td>
+              <span class="cell-block"><span class="source-label source-rm">[RM]</span>Smart University, learning space, data backbone, activity in learning space</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Strategic Digital Backbone (SI 3.1)</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Intelligent Predictive Data System (SI 3.2, score 47/50)</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Campus as Living Lab and Learning Space (SI 3.3)</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เปิด Knowledge Infrastructure (AI Infra, Science Park, Innovation Ecosystem) ให้สังคมเข้าถึง — ไม่ใช่แค่ภายในมหาวิทยาลัย</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI Center, AI-enabled workplace infrastructure (SI 3.7, 3.11)</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Physical asset management and ecosystem platform (SI 3.5, 3.6)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Benevolent campus ที่รองรับความหลากหลายของผู้เรียน (SI 3.9)</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Net-zero campus 2040, clean energy, circular economy (SI 3.4)</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Climate-resilient campus — สถาปัตยกรรมและระบบรับมือ climate change</span>
+              <span class="cell-block derived"><span class="source-label source-hs">[Horizon]</span>Climate risk และ cyber security เป็น infrastructure vulnerability ระดับสูง</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Fully intelligent, AI-enabled, cyber-resilient, climate-resilient, inclusive campus — เป็น living lab platform ระดับภูมิภาค</span>
+            </td>
+          </tr>
+
+          <!-- Row 10: AI (New) -->
+          <tr style="background: #fffaf4;">
+            <td class="dimension" style="color:#9a4b00;">10. AI, Data &amp; Digital Intelligence<br/><span style="font-size:12px;font-weight:400;color:var(--muted);">★ Operating Model ใหม่ที่เสนอเพิ่ม</span></td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Roadmap 2036 กล่าวถึง AI/Big Data แต่ยังไม่มีเจ้าภาพและ milestone ที่ชัดเจน</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>กำหนด Responsible AI Policy และ AI Governance ระดับมหาวิทยาลัย</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Data governance และ data sovereignty framework</span>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>AI service hub — บริการ AI กลางสำหรับทุกภาระกิจ</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>AI Infrastructure เพื่อให้สังคม SMEs และมหาวิทยาลัยอื่นเข้าถึง — ไม่ใช่ใช้ภายใน KMUTT เท่านั้น</span>
+            </td>
+            <td>
+              <span class="cell-block"><span class="source-label source-si">[SI]</span>Institutional AI operating system — AI ขับเคลื่อนทุก OM</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Human-AI capability development program สำหรับบุคลากรทุกระดับ</span>
+              <span class="cell-block"><span class="source-label source-retreat">[Retreat]</span>เป็นแกนนำพัฒนา AI capability ในวงการอุดมศึกษาไทย</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>Sovereign AI capability — พัฒนา AI ของ KMUTT ในสาขาที่มีจุดแข็ง</span>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>AI research frontier — ศูนย์วิจัย AI เฉพาะทาง (healthcare, energy, education)</span>
+            </td>
+            <td>
+              <span class="cell-block derived"><span class="source-label source-derived">[Derived]</span>AI-native university — ทุกกระบวนการขับเคลื่อนด้วย AI อย่างมีจริยธรรมและมีมนุษย์กำกับ</span>
+              <span class="cell-block derived"><span class="source-label source-delphi">[Delphi]</span>AI Governance เป็นเงื่อนไขสำคัญสำหรับ institutional legitimacy ในอนาคต</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4: Key Robust Initiatives -->
+    <section class="section">
+      <h3>4) Top Robust Initiatives จาก Stress-testing 2045 (คะแนน ≥ 45/50)</h3>
+      <p class="note">Initiatives ที่ได้รับการจัดเป็น Low-variance Robust — ทำได้ดีในแทบทุก scenario และควรเป็น quick-win ในแผน 14 (สอดคล้องกับทิศทาง University for Society)</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:6%">อันดับ</th>
+            <th style="width:18%">Strategy Pillar</th>
+            <th style="width:45%">Key Initiative</th>
+            <th style="width:10%">คะแนน</th>
+            <th style="width:11%">OM ที่เกี่ยวข้อง</th>
+            <th style="width:10%">Retreat Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center;font-weight:800;">1</td>
+            <td>Networks &amp; Workforce</td>
+            <td>Internationalizing KMUTT across teaching, learning, research and innovation — academic standards, language, culture, and global collaboration networks</td>
+            <td style="text-align:center;"><span class="tag">48/50</span></td>
+            <td>4. Global Prominence</td>
+            <td><span class="tag red">Pillar 1</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">2</td>
+            <td>Infrastructure</td>
+            <td>Elevating from a database system to an intelligent, predictive data system integrating all dimensions — focused on predictive analytics</td>
+            <td style="text-align:center;"><span class="tag">47/50</span></td>
+            <td>9. Infrastructure / 10. AI</td>
+            <td><span class="tag red">Pillar 2</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">3</td>
+            <td>Education &amp; Learning</td>
+            <td>Developing "Initiators": transforming passive recipients into proactive doers with future-ready skills that AI cannot replicate</td>
+            <td style="text-align:center;"><span class="tag">47/50</span></td>
+            <td>2. Higher Education</td>
+            <td><span class="tag red">Pillar 1</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">4</td>
+            <td>Education &amp; Learning</td>
+            <td>Cultivating human skills and new thinking models for mental resilience in a changing and uncertain world</td>
+            <td style="text-align:center;"><span class="tag">47/50</span></td>
+            <td>2. Higher Education / 7. HR</td>
+            <td><span class="tag red">Pillar 1</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">5</td>
+            <td>Research &amp; Innovation</td>
+            <td>Conducting experiential research in key Thai industrial sectors (food, well-being) to create pathbreaking and groundbreaking knowledge</td>
+            <td style="text-align:center;"><span class="tag">46/50</span></td>
+            <td>3. Research &amp; Innovation</td>
+            <td><span class="tag red">Pillar 3</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">6</td>
+            <td>Education &amp; Learning</td>
+            <td>Integrating AI literacy for both degree and non-degree learners — with sound understanding, critical judgment, and ethical responsibility</td>
+            <td style="text-align:center;"><span class="tag orange">46/50</span></td>
+            <td>2. Higher Education / 10. AI</td>
+            <td><span class="tag red">Pillar 1+4</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">7</td>
+            <td>Research &amp; Innovation</td>
+            <td>Transforming KMUTT from "provider of research and academic services" to "strategic partner" co-driving the future with the business sector</td>
+            <td style="text-align:center;"><span class="tag">45/50</span></td>
+            <td>3. Research / 5. Networking</td>
+            <td><span class="tag red">Pillar 2+3</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-weight:800;">8</td>
+            <td>Research &amp; Innovation</td>
+            <td>Developing assessment for long-term research achievements — focus on mid- and long-term impact, moving beyond low-hanging fruit</td>
+            <td style="text-align:center;"><span class="tag">45/50</span></td>
+            <td>3. Research &amp; Innovation</td>
+            <td><span class="tag red">Pillar 3</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:14px;font-size:14px;">Retreat Link: Pillar 1 = พัฒนากำลังคน, Pillar 2 = ที่พึ่ง SMEs/ฐานราก, Pillar 3 = วิจัยแก้ปัญหาประเทศ, Pillar 4 = ร่วมพัฒนาอุดมศึกษาไทย</p>
+    </section>
+
+    <!-- Section 5: Reading Guide -->
+    <section class="section">
+      <h3>5) คำแนะนำการใช้งานเอกสาร</h3>
+      <div class="print-guide">
+        <div class="guide-box">
+          <strong>สำหรับการประชุมปรับ Roadmap</strong>
+          ใช้ตาราง 9+1 Dimensions ในส่วนที่ 3 เป็นกรอบหลักในการอภิปราย — คลิกปุ่ม Balanced / Conservative / Advanced เพื่อปรับระดับความท้าทาย และดูแถบ [Retreat] เพื่อเห็นจุดที่ทิศทาง University for Society เข้ามาเปลี่ยน
+        </div>
+        <div class="guide-box">
+          <strong>สำหรับ public hearing</strong>
+          ส่วนที่ 0 (Core Repositioning) และส่วนที่ 2 (Vision Progression) ใช้อธิบายว่า "เราปรับอะไร เพราะอะไร มาจากตรงไหน" — แหล่งที่มาแต่ละข้อระบุด้วยป้าย [RM] [SI] [Delphi] [Horizon] [Retreat]
+        </div>
+        <div class="guide-box">
+          <strong>สำหรับวางแผน SO ในแผน 14</strong>
+          ส่วนที่ 4 รวม Top 8 Robust Initiatives ที่ทำได้ดีข้ามทุก scenario และเชื่อมกับ Pillar ของ Retreat 2025 — ใช้เป็น catalogue ของ initiatives สำหรับกำหนด Strategic Objectives ของ University for Society
+        </div>
+      </div>
+      <div style="margin-top:18px;padding:14px 18px;background:#fef2f2;border-radius:14px;font-size:15px;color:#7f1d1d;border-left:4px solid var(--retreat-red);">
+        <strong>หมายเหตุสำคัญ:</strong> เอกสารนี้สังเคราะห์จาก (1) KMUTT Roadmap 2036 ฉบับย่อ (2) KMUTT Foresight Report 2045 — Stress-testing (3) Foresight Roadmap Excel (4) <strong>Retreat 2025 — KMUTT Long-term Development Directions</strong> เพื่อใช้เป็น working document ในการปรับปรุง Roadmap — ทิศทาง <strong>"University for Society"</strong> เป็น repositioning หลักที่ Retreat 2025 ระบุชัดเจน และจะกระจายผ่านทุก Operating Model
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function setMode(mode) {
+      document.body.classList.remove('mode-conservative', 'mode-balanced', 'mode-advanced');
+      document.body.classList.add('mode-' + mode);
+      document.querySelectorAll('.mode-btn').forEach(function(btn) { btn.classList.remove('active'); });
+      var activeBtn = document.getElementById('btn-' + mode);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function exportTableToCSV() {
+      var rows = [];
+      var headers = [];
+      document.querySelectorAll('.roadmap-table thead th').forEach(function(th) {
+        headers.push('"' + th.innerText.replace(/\n/g,' ').replace(/"/g,'""') + '"');
+      });
+      rows.push(headers.join(','));
+      document.querySelectorAll('.roadmap-table tbody tr').forEach(function(tr) {
+        var cells = [];
+        tr.querySelectorAll('td').forEach(function(td) {
+          cells.push('"' + td.innerText.replace(/\n/g,' | ').replace(/"/g,'""') + '"');
+        });
+        rows.push(cells.join(','));
+      });
+      var csv = '\uFEFF' + rows.join('\n');
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'KMUTT_Roadmap_2045_UniversityForSociety.csv';
+      link.click();
+    }
+  </script>
+</body>
+</html>
